@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+package grpc_bilingual.service;
+
+
+option java_package = "com.google.grpc.example.bilingual";
+option java_outer_classname = "Provider";
+
+
+service RpcService {
+
+  rpc Hello(HelloRequest) returns (HelloResponse) {
+  }
+
+}
+
+message HelloRequest {
+  optional string name = 1;
+}
+
+message HelloResponse {
+  optional string greeting = 1;
+}
