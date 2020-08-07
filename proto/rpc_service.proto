@@ -9,8 +9,7 @@ option java_outer_classname = "RpcServices";
 
 service RpcService {
 
-  rpc Hello(HelloRequest) returns (HelloResponse) {
-  }
+  rpc Hello(HelloRequest) returns (HelloResponse) {}
 
 }
 

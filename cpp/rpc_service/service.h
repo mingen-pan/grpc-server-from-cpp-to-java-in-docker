@@ -2,8 +2,8 @@
 #ifndef GRPC_SERVER_FROM_CPP_TO_JAVA_SERVICE_H
 #define GRPC_SERVER_FROM_CPP_TO_JAVA_SERVICE_H
 
-#include "cpp/rpc_service/rpc_service.grpc.pb.h"
-#include "cpp/rpc_service/rpc_service.pb.h"
+#include "proto/rpc_service.grpc.pb.h"
+#include "proto/rpc_service.pb.h"
 
 namespace grpc_bilingual::service {
 
