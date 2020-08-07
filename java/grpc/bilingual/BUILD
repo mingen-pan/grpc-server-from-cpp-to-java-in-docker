@@ -1,5 +1,5 @@
 CLIENT_SRCS = [
-    "Client.java",
+    "RpcClient.java",
 ]
 
 java_library(
@@ -12,14 +12,9 @@ java_library(
         #        ":service_provider",
         "//cpp/rpc_service:rpc_service_java",
         "//cpp/rpc_service:rpc_service_java_proto",
-        "@com_google_api_grpc_proto_google_common_protos//jar",
-        "@com_google_protobuf//:protobuf_java",
-        "@com_google_protobuf//:protobuf_java_util",
-        #        "@io_grpc_grpc_core//jar",
         "@maven//:io_grpc_grpc_api",
         "@maven//:io_grpc_grpc_protobuf",
         "@maven//:io_grpc_grpc_stub",
-        #        "@maven//:org_projectlombok_lombok",
     ],
 )
 

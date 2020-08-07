@@ -3,11 +3,11 @@ package grpc.bilingual;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
 
-public class Client {
+public class RpcClient {
 
   private static RpcServiceGrpc.RpcServiceBlockingStub stub;
 
-  private Client() {}
+  private RpcClient() {}
 
   public static RpcServiceGrpc.RpcServiceBlockingStub getStub() {
     if (stub == null) {
@@ -25,4 +25,10 @@ public class Client {
             .build();
   }
 
+  public static String hello(String name) {
+    getStub();
+    RpcServices.HelloRequest request = RpcServices.HelloRequest.newBuilder().setName(name).build();
+    RpcServices.HelloResponse response = stub.hello(request);
+    return response.getGreeting();
+  }
 }
