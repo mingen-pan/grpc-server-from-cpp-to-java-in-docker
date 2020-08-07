@@ -3,8 +3,8 @@ syntax = "proto2";
 package grpc_bilingual.service;
 
 
-option java_package = "com.google.grpc.example.bilingual";
-option java_outer_classname = "Provider";
+option java_package = "grpc.bilingual";
+option java_outer_classname = "RpcServices";
 
 
 service RpcService {

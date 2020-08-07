@@ -17,10 +17,21 @@ cc_proto_library(
 )
 
 cc_grpc_library(
-    name = "rpc_serice_cc",
+    name = "rpc_service_cc",
     srcs = [":rpc_service_proto"],
     grpc_only = True,
     deps = [":rpc_service_cc_proto"],
+)
+
+java_proto_library(
+    name = "rpc_service_java_proto",
+    deps = [":rpc_service_proto"],
+)
+
+java_grpc_library(
+    name = "rpc_service_java",
+    srcs = [":rpc_service_proto"],
+        deps = [":rpc_service_java_proto"],
 )
 
 cc_library(
@@ -29,10 +40,9 @@ cc_library(
     hdrs = ["service.h"],
     copts = ["-Wno-sign-compare"],
     deps = [
-        ":rpc_serice_cc",
+        ":rpc_service_cc",
         ":rpc_service_cc_proto",
-         "@com_github_grpc_grpc//:grpc++",
+        "@com_github_grpc_grpc//:grpc++",
         # dep regarding implementation
-
     ],
 )
