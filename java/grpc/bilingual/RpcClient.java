@@ -1,7 +1,6 @@
 package grpc.bilingual;
 
 import io.grpc.Channel;
-import io.grpc.ManagedChannelBuilder;
 
 public class RpcClient {
 
@@ -18,17 +17,12 @@ public class RpcClient {
   }
 
   private static Channel getChannel() {
-    return ManagedChannelBuilder.forTarget("localhost:50051")
-            // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
-            // needing certificates.
-            .usePlaintext()
-            .build();
+    return RpcServiceProvider.loadChannel(50051);
   }
 
   public static String hello(String name) {
-    getStub();
     RpcServices.HelloRequest request = RpcServices.HelloRequest.newBuilder().setName(name).build();
-    RpcServices.HelloResponse response = stub.hello(request);
+    RpcServices.HelloResponse response = getStub().hello(request);
     return response.getGreeting();
   }
 }
