@@ -1,3 +1,5 @@
+load("@google_bazel_common//tools/jarjar:jarjar.bzl", "jarjar_library")
+
 package(
     default_visibility = ["//visibility:public"],
 )
@@ -55,5 +57,20 @@ java_binary(
     main_class = "grpc.bilingual.Main",
     deps = [
         ":client",
+    ],
+)
+
+# build a light-weighted jar. It should be used along with dependencies.
+jarjar_library(
+    name = "lightweighted-client",
+    jars = [
+        ":client",
+        ":service_provider",
+        ":properties",
+        "//proto:rpc_service_java_grpc",
+        "//proto:rpc_service_java_proto",
+    ],
+    rules = [
+        "zap com.google.protobuf.**",
     ],
 )
