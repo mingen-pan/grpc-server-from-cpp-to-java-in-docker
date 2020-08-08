@@ -61,6 +61,11 @@ java_binary(
 )
 
 # build a light-weighted jar. It should be used along with dependencies.
+# Here are the dependencies in Gradle:
+# JAVA_GRPC_VERSION = 1.30.0
+# implementation "io.grpc:grpc-netty-shaded:" + JAVA_GRPC_VERSION
+# implementation "io.grpc:grpc-protobuf:" + JAVA_GRPC_VERSION
+# implementation "io.grpc:grpc-stub:" + JAVA_GRPC_VERSION
 jarjar_library(
     name = "lightweighted-client",
     jars = [
