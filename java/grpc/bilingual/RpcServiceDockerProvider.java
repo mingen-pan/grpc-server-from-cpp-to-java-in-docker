@@ -17,8 +17,8 @@ import java.util.List;
 public class RpcServiceDockerProvider implements RpcServiceProvider {
 
     private final static Integer SERVER_PORT = 50051;
-    private final static String ADDRESS = "localhost:" + SERVER_PORT;
-    private final static String IMAGE = "example/run-server:latest";
+    private final static String ADDRESS_PREFIX = "localhost:";
+    private final static String IMAGE = RpcProperties.get().getImage(/*default=*/"");
     private final static String RUNNING = "running";
     // waiting time for starting server. If the server container con not start in this period, it will be considered shutdown.
     // Unit is millisecond.
@@ -83,7 +83,7 @@ public class RpcServiceDockerProvider implements RpcServiceProvider {
             throw new RpcServiceException("unable to create a channel to RPC Server through Docker", exception);
         }
 
-        return ManagedChannelBuilder.forTarget(ADDRESS)
+        return ManagedChannelBuilder.forTarget(ADDRESS_PREFIX + port)
                 // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
                 // needing certificates.
                 .usePlaintext()

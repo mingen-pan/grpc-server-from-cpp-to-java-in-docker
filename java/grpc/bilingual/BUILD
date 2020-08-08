@@ -10,6 +10,7 @@ java_library(
     name = "client",
     srcs = CLIENT_SRCS,
     deps = [
+        ":properties",
         ":service_provider",
         "//proto:rpc_service_java_grpc",
         "//proto:rpc_service_java_proto",
@@ -30,11 +31,21 @@ java_library(
         "@maven//:io_grpc_grpc_netty_shaded",
     ],
     deps = [
+        ":properties",
         "@maven//:com_github_docker_java_docker_java_api",
         "@maven//:com_github_docker_java_docker_java_core",
         "@maven//:com_github_docker_java_docker_java_transport",
         "@maven//:com_github_docker_java_docker_java_transport_httpclient5",
         "@maven//:io_grpc_grpc_api",
+    ],
+)
+
+java_library(
+    name = "properties",
+    srcs = ["RpcProperties.java"],
+    resource_strip_prefix = "java/resources/",
+    resources = [
+        "//java/resources:app-properties",
     ],
 )
 

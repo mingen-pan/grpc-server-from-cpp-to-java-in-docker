@@ -2,6 +2,8 @@ package grpc.bilingual;
 
 import io.grpc.Channel;
 
+import java.util.Properties;
+
 public class RpcClient {
 
   private static RpcServiceGrpc.RpcServiceBlockingStub stub;
@@ -17,7 +19,8 @@ public class RpcClient {
   }
 
   private static Channel getChannel() {
-    return RpcServiceProvider.loadChannel(50051);
+    int port = RpcProperties.get().getPort(/*default=*/50051);
+    return RpcServiceProvider.loadChannel(port);
   }
 
   public static String hello(String name) {
